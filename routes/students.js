@@ -20,11 +20,8 @@ router.get('/:id', function (req, res) {
 })
 
 router.post('/', function (req, res) {
-  let name = req.body.name;
-  let phone = req.body.phone;
-  let email = req.body.email;
-  let gender = req.body.gender;
-  let city = req.body.city;
+
+  let { name, phone, email, gender, city } = req.body;
 
   const query = `INSERT INTO students (ID, Name, phone, email, gender, city) VALUES (NULL, ?, ?, ?, ?, ?)`;
   connection.query(query, [name, phone, email, gender, city], (err, results) => {
@@ -35,11 +32,7 @@ router.post('/', function (req, res) {
 
 router.put('/:id', function (req, res) {
   let id = req.params.id;
-  let name = req.body.name;
-  let phone = req.body.phone;
-  let email = req.body.email;
-  let gender = req.body.gender;
-  let city = req.body.city;
+  let { name, phone, email, gender, city } = req.body;
 
   const query = `UPDATE students SET Name=?, phone=?, email=?, gender=?, city=? WHERE ID=?`;
   connection.query(query, [name, phone, email, gender, city, id], (err, results) => {
